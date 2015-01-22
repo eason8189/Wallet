@@ -105,8 +105,7 @@ public class Coins {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
+    public boolean equals(Coins o) {
         if (this == o) return true;
         if (!(o instanceof Coins)) return false;
 

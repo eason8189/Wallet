@@ -73,8 +73,7 @@ public class Cards {
                     expiryYear + ".";
     }
 
-    @Override
-    public boolean equals(Object o) {
+    public boolean equals(Cards o) {
         if (this == o) return true;
         if (!(o instanceof Cards)) return false;
 
