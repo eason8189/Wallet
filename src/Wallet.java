@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /** COMP249 Assignment 1
  *  Wallet Class
  *  Yang Shen (7159390)
@@ -60,14 +62,22 @@ public class Wallet {
         return numOfCreditCard;
     }
 
-    public void addCreditCard(){
+    public String addCreditCard(CreditCardType creditCardType, String cardHolder, int expiryMonth, int expiryYear){
+        Scanner kb = new Scanner(System.in);
+        creditCardType =
+
         for(int i=0; i<Cards.length; i++){
             while(Cards[i] == null);
                 Cards [i] = new Card();
             break;
         }
+
+        return "There are "+Cards.length+1 +" credit card in this wallet now.";
     }
 
+    public void removeCreditCard(){
 
+
+    }
 
 }
