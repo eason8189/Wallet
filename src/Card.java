@@ -2,20 +2,20 @@
  *  Cards Class
  *  Yang Shen (7159390)
  */
-public class Cards {
+public class Card {
     private CreditCardType CreditCardType;
     private String cardHolder;
     private int expiryMonth;
     private int expiryYear;
 
-    public Cards(){
+    public Card(){
         CreditCardType = null;
         cardHolder = null;
         expiryMonth = 0;
         expiryYear = 0;
     }
 
-    public Cards(CreditCardType creditCardType, String cardHolder, int expiryMonth, int expiryYear) {
+    public Card(CreditCardType creditCardType, String cardHolder, int expiryMonth, int expiryYear) {
         CreditCardType = creditCardType;
         this.cardHolder = cardHolder;
         if(expiryMonth < 1 || expiryMonth > 12)
@@ -25,7 +25,7 @@ public class Cards {
         this.expiryYear = expiryYear;
     }
 
-    public Cards(Cards cards){
+    public Card(Card cards){
         CreditCardType = cards.CreditCardType;
         cardHolder = cards.cardHolder;
         expiryMonth = cards.expiryMonth;
@@ -73,11 +73,11 @@ public class Cards {
                     expiryYear + ".";
     }
 
-    public boolean equals(Cards o) {
+    public boolean equals(Card o) {
         if (this == o) return true;
-        if (!(o instanceof Cards)) return false;
+        if (!(o instanceof Card)) return false;
 
-        Cards cards = (Cards) o;
+        Card cards = (Card) o;
 
         if (expiryMonth != cards.expiryMonth) return false;
         if (expiryYear != cards.expiryYear) return false;

@@ -5,14 +5,14 @@
 
 public class Wallet {
     private Coins Coins;
-    private Cards [] Cards;
+    private Card [] Cards;
 
     public Wallet(){
         Coins = new Coins();
-        Cards = new Cards[10];
+        Cards = new Card[10];
     }
 
-    public Wallet(Coins coins, Cards[] cards) {
+    public Wallet(Coins coins, Card[] cards) {
         this.Coins = coins;
         this.Cards = cards;
     }
@@ -51,16 +51,22 @@ public class Wallet {
     }
 
     public int getTotalNumOfCreditCard(Wallet wallet){
-        int index = 0;
+        int numOfCreditCard = 0;
         for(int i=0;i< Cards.length;i++){
             if(Cards[i]!=null){
-                index++;
+                numOfCreditCard++;
             }
         }
-        return index;
+        return numOfCreditCard;
     }
 
-
+    public void addCreditCard(){
+        for(int i=0; i<Cards.length; i++){
+            while(Cards[i] == null);
+                Cards [i] = new Card();
+            break;
+        }
+    }
 
 
 
