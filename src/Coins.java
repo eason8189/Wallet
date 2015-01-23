@@ -98,10 +98,10 @@ public class Coins {
     @Override
     public String toString() {
         return  "Number Of Nickels=" + numOfNickels +
-                ", Number Of Dimes=" + numOfDimes +
-                ", Number Of Quarters=" + numOfQuarters +
-                ", Number Of Loonies=" + numOfLoonies +
-                ", Number Of Toonies=" + numOfToonies +
+                "\nNumber Of Dimes=" + numOfDimes +
+                "\nNumber Of Quarters=" + numOfQuarters +
+                "\nNumber Of Loonies=" + numOfLoonies +
+                "\nNumber Of Toonies=" + numOfToonies +
                 '}';
     }
 

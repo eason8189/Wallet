@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.Arrays;
 
 /** COMP249 Assignment 1
  *  Wallet Class
@@ -10,8 +10,8 @@ public class Wallet {
     private Card [] Cards;
 
     public Wallet(){
-        Coins = new Coins();
-        Cards = new Card[10];
+        Coins = null;
+        Cards = null;
     }
 
     public Wallet(Coins coins, Card[] cards) {
@@ -52,7 +52,7 @@ public class Wallet {
         return wallet.Coins.coinsTotal();
     }
 
-    public int getTotalNumOfCreditCard(Wallet wallet){
+    public int getTotalNumOfCreditCard(){
         int numOfCreditCard = 0;
         for(int i=0;i< Cards.length;i++){
             if(Cards[i]!=null){
@@ -62,22 +62,76 @@ public class Wallet {
         return numOfCreditCard;
     }
 
-    public String addCreditCard(CreditCardType creditCardType, String cardHolder, int expiryMonth, int expiryYear){
-        Scanner kb = new Scanner(System.in);
-        creditCardType =
+    public void addCreditCard(Card newCard) {
+        if (this.getTotalNumOfCreditCard() == 0) {
+            int i = 1;
+            Card[] temp = new Card[1];
+            temp[0] = new Card(newCard);
+            this.Cards = temp;
 
-        for(int i=0; i<Cards.length; i++){
-            while(Cards[i] == null);
-                Cards [i] = new Card();
-            break;
+        } else {
+            Card[] temp = new Card[this.getTotalNumOfCreditCard() + 1];
+
+            for (int i = 0; i < Cards.length; i++)
+                temp[i] = new Card(Cards[i]);
+            temp[this.getTotalNumOfCreditCard()] = new Card(newCard);
+            this.Cards = temp;
+        }
+    }
+
+    public boolean removeCreditCard(int index){
+
+            if (Cards.length == 0)// If a wallet has no credit, it makes no sense to delete one.
+                return false;
+            else
+            {
+                Card [] temp = new Card [Cards.length - 1];
+
+                for (int i = 0; i < index; i++)
+                    temp[i] = new Card(Cards[i]);
+
+                int indexPlus = index+1;
+                for (int i = indexPlus; i < temp.length;indexPlus++)
+                    temp[i-1] =  new Card(Cards[i]);
+                this.Cards = temp;
+
+                return true;
+            }
+
         }
 
-        return "There are "+Cards.length+1 +" credit card in this wallet now.";
+    public void updateMonthandYear(int index, int m, int y){
+
+            Cards[index].setExpiryMonth(m);
+            Cards[index].setExpiryYear(y);
+
     }
 
-    public void removeCreditCard(){
-
-
+    public double addCoinsToWallet(int nickel, int dime, int quarter, int loonie, int toonie){
+        Coins.addCoins(nickel, dime, quarter, loonie, toonie);
+        return Coins.coinsTotal();
     }
 
+    public boolean equals(Wallet o) {
+        if (this == o) return true;
+        if (!(o instanceof Wallet)) return false;
+
+        Wallet wallet = (Wallet) o;
+
+        if (!Arrays.equals(Cards, wallet.Cards)) return false;
+        if (Coins.coinsTotal() != wallet.Coins.coinsTotal()) return false;
+
+        return true;
+    }
+
+    public String toString() {
+        return "Wallet Detail:\n" +
+                "Coins' Value:\n" + Coins.toString() +
+                "\nCredit Cards:\n" + Arrays.toString(Cards);
+    }
+
+    public String coinsDetail()
+    {
+        return Coins.toString();
+    }
 }
