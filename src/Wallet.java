@@ -26,7 +26,8 @@ public class Wallet {
         if (Coins.getCoinsTotal() != 0 ? Coins.getCoinsTotal() != wallet.Coins.getCoinsTotal() : wallet.Coins != null)
             return false;
 
-        return true;
+        else
+            return true;
     }
 
     public boolean equalsCoinsType(Object o) {
@@ -38,13 +39,28 @@ public class Wallet {
         if (Coins.getNumOfNickels() != wallet.Coins.getNumOfNickels()
                 || Coins.getNumOfDimes() != wallet.Coins.getNumOfDimes()
                 || Coins.getNumOfLoonies() != wallet.Coins.getNumOfLoonies()
-                || Coins.getNumOfToonies() != wallet.Coins.getNumOfToonies())
+                ||Coins.getNumOfToonies() != wallet.Coins.getNumOfToonies())
             return false;
 
-        return true;
+        else
+            return true;
     }
 
-    
+    public double getTotalCoinsValue(Wallet wallet){
+        return wallet.Coins.coinsTotal();
+    }
+
+    public int getTotalNumOfCreditCard(Wallet wallet){
+        int index = 0;
+        for(int i=0;i< Cards.length;i++){
+            if(Cards[i]!=null){
+                index++;
+            }
+        }
+        return index;
+    }
+
+
 
 
 
