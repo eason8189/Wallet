@@ -1,6 +1,7 @@
 /** COMP249 Assignment 1
  *  Credit Cards ENUM Type
- *  Yang Shen (7159390)
+ *  @author Yang Shen
+ *  An enum type for Credit Card types.
  */
 public enum CreditCardType {
     Visa,MasterCard,AmericanExpress

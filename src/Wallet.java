@@ -2,36 +2,44 @@ import java.util.Arrays;
 
 /** COMP249 Assignment 1
  *  Wallet Class
- *  Yang Shen (7159390)
+ *  @author Yang Shen
+ *  This class contains the attributes and method for Wallet.
  */
 
-public class Wallet {
-    private Coins Coins;
-    private Card [] Cards;
 
+    //Attributes of Wallet, contains Coins class and an array of Cards.
+public class Wallet {
+    public Coins Coins;
+    public CreditCard [] Cards;
+
+
+    //Default Constructor
     public Wallet(){
         Coins = null;
         Cards = null;
     }
 
-    public Wallet(Coins coins, Card[] cards) {
-        this.Coins = coins;
+
+    //Parametrized Constructor
+    public Wallet(Coins coins, CreditCard[] cards) {
+        this.Coins = new Coins(coins);
         this.Cards = cards;
     }
 
-    public boolean equalsCoinsValue(Wallet o) {
-        if (this == o) return true;
-        if (!(o instanceof Wallet)) return false;
 
-        Wallet wallet = (Wallet) o;
-
-        if (Coins.getCoinsTotal() != 0 ? Coins.getCoinsTotal() != wallet.Coins.getCoinsTotal() : wallet.Coins != null)
-            return false;
-
-        else
-            return true;
+    /**
+     * This method compares if to Wallet's Coins' value are equal.
+     * @return true if both class are equal, false otherwise.
+     */
+    public boolean equalsCoinsValue(Wallet w)
+    {
+        return (Coins.coinsTotal() == w.Coins.coinsTotal());
     }
 
+    /**
+     * This method compares if to Wallet's Coins' type are equal.
+     * @return true if both class are equal, false otherwise.
+     */
     public boolean equalsCoinsType(Object o) {
         if (this == o) return true;
         if (!(o instanceof Wallet)) return false;
@@ -48,10 +56,19 @@ public class Wallet {
             return true;
     }
 
-    public double getTotalCoinsValue(Wallet wallet){
-        return wallet.Coins.coinsTotal();
+
+    /**
+     * This method access the total value of a coin class.
+     * @return the coin class' total.
+     */
+    public double getTotalCoinsValue(){
+        return Coins.coinsTotal();
     }
 
+    /**
+     * This method access the total number of a credit card stored.
+     * @return the total number of credit card.
+     */
     public int getTotalNumOfCreditCard(){
         int numOfCreditCard = 0;
         for(int i=0;i< Cards.length;i++){
@@ -62,44 +79,56 @@ public class Wallet {
         return numOfCreditCard;
     }
 
-    public void addCreditCard(Card newCard) {
+    /**
+     * This method adds a new credit card to the credit card array created.
+     * By doing so, a temperate array that has extra memory location is created for store the new credit card.
+     * @param newCard the new credit card to be added.
+     */
+    public void addCreditCard(CreditCard newCard) {
         if (this.getTotalNumOfCreditCard() == 0) {
             int i = 1;
-            Card[] temp = new Card[1];
-            temp[0] = new Card(newCard);
+            CreditCard[] temp = new CreditCard[i];
+            temp[0] = new CreditCard(newCard);
             this.Cards = temp;
 
         } else {
-            Card[] temp = new Card[this.getTotalNumOfCreditCard() + 1];
+            CreditCard[] temp = new CreditCard[this.getTotalNumOfCreditCard() + 1];
 
             for (int i = 0; i < Cards.length; i++)
-                temp[i] = new Card(Cards[i]);
-            temp[this.getTotalNumOfCreditCard()] = new Card(newCard);
+                temp[i] = new CreditCard(Cards[i]);
+            temp[this.getTotalNumOfCreditCard()] = new CreditCard(newCard);
             this.Cards = temp;
         }
     }
 
+    /**
+     * This method remove a existing credit card from a credit card array.
+     * By doing so, a temperate array that has one less memory location is created for copy the remaining credit card.
+     * @param index the credit card index to be deleted..
+     */
     public boolean removeCreditCard(int index){
 
             if (Cards.length == 0)// If a wallet has no credit, it makes no sense to delete one.
                 return false;
             else
             {
-                Card [] temp = new Card [Cards.length - 1];
+                CreditCard [] temp = new CreditCard [Cards.length - 1];
 
                 for (int i = 0; i < index; i++)
-                    temp[i] = new Card(Cards[i]);
+                    temp[i] = new CreditCard(Cards[i]);
 
-                int indexPlus = index+1;
-                for (int i = indexPlus; i < temp.length;indexPlus++)
-                    temp[i-1] =  new Card(Cards[i]);
+                for (int i = index+1; i < Cards.length;i++)
+                    temp[i-1] =  new CreditCard(Cards[i]);
                 this.Cards = temp;
 
                 return true;
             }
 
         }
-
+    /**
+     * This method sets the new expiry month and year for a credit card.
+     * @param index,m,y are the credit card index, new month, and new year, respectively.
+     */
     public void updateMonthandYear(int index, int m, int y){
 
             Cards[index].setExpiryMonth(m);
@@ -107,11 +136,19 @@ public class Wallet {
 
     }
 
+    /**
+     * This method add the new coins to an existing wallet.
+     * @param nickel,dime,quarter,loonie,toonie, are nickel,dime,quarter,loonie,and toonie respectively.
+     */
     public double addCoinsToWallet(int nickel, int dime, int quarter, int loonie, int toonie){
         Coins.addCoins(nickel, dime, quarter, loonie, toonie);
         return Coins.coinsTotal();
     }
 
+    /**
+     * This method compares to wallet object.
+     * @return true if both objects are equal, false otherwise.
+     */
     public boolean equals(Wallet o) {
         if (this == o) return true;
         if (!(o instanceof Wallet)) return false;
@@ -124,12 +161,20 @@ public class Wallet {
         return true;
     }
 
+    /**
+     * This method lists the detail of coins' value and credit card of a wallet object.
+     * @return a list of detail.
+     */
     public String toString() {
         return "Wallet Detail:\n" +
                 "Coins' Value:\n" + Coins.toString() +
                 "\nCredit Cards:\n" + Arrays.toString(Cards);
     }
 
+    /**
+     * A method which will return a string with just the breakdown of the coins.
+     * @return the break down of the coins.
+     */
     public String coinsDetail()
     {
         return Coins.toString();
