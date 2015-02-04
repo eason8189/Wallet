@@ -1,7 +1,4 @@
-/** COMP249 Assignment 1
- *  Cards Class
- *  @author Yang Shen
- *  This class contains the attributes and method for Credit cards.
+/** @author Yang Shen
  */
 
     //Credit Card Attributes

@@ -1,9 +1,6 @@
 import java.util.Arrays;
 
-/** COMP249 Assignment 1
- *  Wallet Class
- *  @author Yang Shen
- *  This class contains the attributes and method for Wallet.
+/** @author Yang Shen
  */
 
 

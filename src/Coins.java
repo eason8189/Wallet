@@ -1,7 +1,4 @@
-/** COMP249 Assignment 1
- *  Coins Class
- *  @author Yang Shen
- *  This class contains the attributes and method for Coins.
+/** @author Yang Shen
  */
 
 
